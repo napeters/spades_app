@@ -1,12 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="SpadesApp">
   <head>
     <meta charset="utf-8">
     <title>Spades</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <script src="scripts/angular/angular.js"></script>
+    <script src="./js/app.js"></script>
   </head>
-  <body>
-    <button>Sign up</button>
-    <button>Log in></button>
-    <button>Start Game</button>
+  <body ng-controller="SpadesController as spades">
+
+    <button class="sign-up">Sign up</button>
+    <button class="log-in">{{ spades.status }}</button>
+    <button method="post" class="start" ng-click="spades.makeDeck()">Start Game</button>
+    <button class="join" ng-click="spades.addPlayer()">Join Game</button>
+    <button class="deal" ng-click="spades.deal()">Deal</button>
+
+    <div class="deck">
+      <div class="{{card.suit}}" ng-repeat="card in spades.deck">
+        <strong>{{card.value}}</strong>
+      </div>
+    </div>
+
+    <div class="form-container">
+      <p class="x">X</p>
+      <div class="form-login">
+        <h1>Login</h1>
+        <div class="error"></div>
+        <form ng-submit="spades.loginPlayer()" method="post">
+          <input class="email" type="text" placeholder="Email" ng-model="spades.loggingInPlayer.email"><br>
+          <input class="password" type="password" placeholder="Password" ng-model="spades.loggingInPlayer.password"><br>
+          <input class="submit-login" type="submit" value="Submit">
+        </form>
+      </div>
+      <div class="form-signup">
+        <h1>Signup</h1>
+        <form ng-submit="spades.createPlayer()" method="post">
+          <input class="first-name" type="text" placeholder="First Name" ng-model="spades.newPlayer.first_name"><br>
+          <input class="last-name" type="text" placeholder="Last Name" ng-model="spades.newPlayer.last_name"><br>
+          <input class="user-name" type="text" placeholder="Username" ng-model="spades.newPlayer.user_name"><br>
+          <input class="email" type="text" placeholder="Email" ng-model="spades.newPlayer.email"><br>
+          <input class="password" type="password" placeholder="Password" ng-model="spades.newPlayer.password"><br>
+          <input class="submit-signup" type="submit" value="Submit">
+        </form>
+      </div>
+    </div>
+
   </body>
 </html>

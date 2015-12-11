@@ -1,4 +1,5 @@
 'use strict';
+var jwt = require('jsonwebtoken');
 let User = require('../models/user');
 
 function create(req, res){
@@ -56,7 +57,7 @@ function login(req, res){
       user.authenticate(userParams.password, function (err, isMatch) {
         if (err) throw err;
         if (isMatch) {
-          return res.status(200).send({message: "Valid Credentials", currentUser: user});
+          return res.status(200).send({currentUser: user});
           // return res.status(200).send({message: "Valid Credentials", token: jwt.sign(user, secret), currentUser: user});
         } else {
           return res.status(401).send({message: "Invalid Credentials"});

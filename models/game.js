@@ -2,7 +2,8 @@
 let mongoose = require('mongoose');
 
 let gameSchema = new mongoose.Schema({
-  deck: Object,
+  deck: Array,
+  shuffledDeck: Array,
   users: Array,
   created_at: {type: Date, default: Date.now, required: true},
   updated_at: {type: Date, default: Date.now, required: true},
