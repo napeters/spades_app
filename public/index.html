@@ -10,14 +10,14 @@
   <body ng-controller="SpadesController as spades">
 
     <button class="sign-up">Sign up</button>
-    <button class="log-in">{{ spades.status }}</button>
+    <button class="log-in">Log in</button>
     <button method="post" class="start" ng-click="spades.makeDeck()">Start Game</button>
     <button class="join" ng-click="spades.addPlayer()">Join Game</button>
     <button class="deal" ng-click="spades.deal()">Deal</button>
 
-    <div class="deck">
-      <div class="{{card.suit}}" ng-repeat="card in spades.deck">
-        <strong>{{card.value}}</strong>
+    <div class="players">
+      <div class="player" ng-repeat="player in spades.players">
+        <strong>{{player.user_name}}</strong>
       </div>
     </div>
 
@@ -42,6 +42,12 @@
           <input class="password" type="password" placeholder="Password" ng-model="spades.newPlayer.password"><br>
           <input class="submit-signup" type="submit" value="Submit">
         </form>
+      </div>
+    </div>
+
+    <div class="deck">
+      <div class="{{card.suit}}" ng-repeat="card in spades.deck">
+        <strong>{{card.value}}</strong>
       </div>
     </div>
 
