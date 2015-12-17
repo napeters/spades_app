@@ -7,7 +7,7 @@ const app = express();
 
 const mongoose = require('mongoose');
 let mongoUri =  process.env.MONGOLAB_URI || 'mongodb://localhost/spades';
-moongoose.connect(mongoUri);
+mongoose.connect(mongoUri);
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
